@@ -13,3 +13,9 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install derailed/k9s/k9s
 brew install jid
+
+curl -L -o /tmp/sapling.deb https://github.com/facebook/sapling/releases/download/0.2.20250521-115337%2B25ed6ac4/sapling_0.2.20250521-115337%2B25ed6ac4_amd64.Ubuntu22.04.deb
+sudo dpkg -i /tmp/sapling.deb
+
+
+
