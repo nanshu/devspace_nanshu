@@ -16,6 +16,9 @@ brew install derailed/k9s/k9s jid pipx visidata bat eza pv btop glow ipcalc tldr
 curl -L -o /tmp/sapling.deb https://github.com/facebook/sapling/releases/download/0.2.20250521-115337%2B25ed6ac4/sapling_0.2.20250521-115337%2B25ed6ac4_amd64.Ubuntu22.04.deb
 sudo dpkg -i /tmp/sapling.deb
 
+curl -L https://github.com/akinomyoga/ble.sh/releases/download/nightly/ble-nightly.tar.xz | tar xJf -
+bash ble-nightly/ble.sh --install ~/.local/share
+
 
 
 
