@@ -1,17 +1,18 @@
 #!/bin/bash
 
-sudo sh -c '
+sudo sh << 'EOF'
 add-apt-repository -y ppa:jgmath2000/et
-curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
+curl -fsSL https://apt.fury.io/wez/gpg.key | gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | tee /etc/apt/sources.list.d/wezterm.list
+chmod 644 /usr/share/keyrings/wezterm-fury.gpg
 apt update -qq
 apt install -y et fzf build-essential libssl-dev ruby-dev wezterm
 snap install nvim --classic
 snap install kubectx --classic
 gem install consul-templaterb
 gem install multitrap
-'
+EOF
+
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install derailed/k9s/k9s jid pipx visidata bat eza pv btop glow ipcalc tldr atuin k6
