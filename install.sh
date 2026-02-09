@@ -14,6 +14,7 @@ declare -A PACKAGE_META=(
     [wezterm]="apt:wezterm:setup_wezterm_repo"
     [consul_templaterb]="gem:consul-templaterb"
     [multitrap]="gem:multitrap"
+    [gcc]="brew:gcc"
     [k9s]="brew:derailed/k9s/k9s"
     [jid]="brew:jid"
     [pipx]="brew:pipx"
@@ -35,7 +36,7 @@ declare -A PACKAGE_META=(
 # Map hostnames to their packages
 declare -A HOSTNAME_MODULES=(
     # [default]="et fzf build_essential libssl_dev ruby_dev wezterm consul_templaterb multitrap k9s jid pipx visidata bat eza pv btop glow ipcalc tldr atuin k6 nvim kubectx sapling"
-    [default]="fzf wezterm k9s jid pipx bat eza pv btop glow ipcalc tldr atuin k6 nvim kubectx sapling"
+    [default]="fzf build-essential libssl_dev wezterm k9s jid pipx bat eza pv btop glow ipcalc tldr atuin k6 nvim kubectx sapling gcc"
 )
 
 # ==================== UTILITY FUNCTIONS ====================
