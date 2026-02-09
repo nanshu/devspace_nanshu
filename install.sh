@@ -36,7 +36,7 @@ declare -A PACKAGE_META=(
 # Map hostnames to their packages
 declare -A HOSTNAME_MODULES=(
     # [default]="et fzf build_essential libssl_dev ruby_dev wezterm consul_templaterb multitrap k9s jid pipx visidata bat eza pv btop glow ipcalc tldr atuin k6 nvim kubectx sapling"
-    [default]="fzf build-essential libssl_dev wezterm k9s jid pipx bat eza pv btop glow ipcalc tldr atuin k6 nvim kubectx sapling gcc"
+    [default]="fzf build_essential libssl_dev wezterm k9s jid pipx bat eza pv btop glow ipcalc tldr atuin k6 nvim kubectx sapling gcc"
 )
 
 # ==================== UTILITY FUNCTIONS ====================
@@ -111,7 +111,7 @@ batch_install_apt() {
     
     # Parse package metadata and collect repo setup functions
     for pkg in "${packages[@]}"; do
-        local meta="${PACKAGE_META[$pkg]}"
+        local meta="${PACKAGE_META[$pkg]:-}"
         if [[ -z "$meta" ]]; then
             log_error "Unknown package: $pkg"
             continue
@@ -150,7 +150,7 @@ batch_install_gem() {
     local -a gem_packages=()
     
     for pkg in "${packages[@]}"; do
-        local meta="${PACKAGE_META[$pkg]}"
+        local meta="${PACKAGE_META[$pkg]:-}"
         if [[ -z "$meta" ]]; then
             continue
         fi
@@ -176,7 +176,7 @@ batch_install_brew() {
     local -a brew_packages=()
     
     for pkg in "${packages[@]}"; do
-        local meta="${PACKAGE_META[$pkg]}"
+        local meta="${PACKAGE_META[$pkg]:-}"
         if [[ -z "$meta" ]]; then
             continue
         fi
@@ -203,7 +203,7 @@ batch_install_dpkg() {
     local -a packages=("$@")
     
     for pkg in "${packages[@]}"; do
-        local meta="${PACKAGE_META[$pkg]}"
+        local meta="${PACKAGE_META[$pkg]:-}"
         if [[ -z "$meta" ]]; then
             continue
         fi
@@ -242,7 +242,7 @@ main() {
     
     # Validate all packages exist in metadata
     for pkg in "${packages[@]}"; do
-        if [[ -z "${PACKAGE_META[$pkg]}" ]]; then
+        if [[ -z "${PACKAGE_META[$pkg]:-}" ]]; then
             log_error "Unknown package: $pkg"
             return 1
         fi
