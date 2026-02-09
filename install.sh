@@ -208,7 +208,9 @@ batch_install_dpkg() {
             continue
         fi
         
-        IFS=':' read -r type url _ <<< "$meta"
+        local type="${meta%%:*}"
+        local url="${meta#*:}"
+        
         if [[ "$type" == "dpkg" ]]; then
             local filename=$(basename "$url" | cut -d'?' -f1)
             local temp_file="/tmp/$filename"
