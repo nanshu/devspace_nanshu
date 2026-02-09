@@ -7,7 +7,7 @@ set -euo pipefail
 # Package metadata: package_name -> "type:package_spec[:repo_setup_func]"
 declare -A PACKAGE_META=(
     [et]="apt:et:setup_et_repo"
-    [fzf]="apt:fzf"
+    [fzf]="brew:fzf"
     [build_essential]="apt:build-essential"
     [libssl_dev]="apt:libssl-dev"
     [ruby_dev]="apt:ruby-dev"
