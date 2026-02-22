@@ -258,6 +258,12 @@ main() {
     batch_install_gem "${packages[@]}"
     batch_install_brew "${packages[@]}"
     batch_install_dpkg "${packages[@]}"
+
+    loginctl enable-linger $USER
+    # Start the WezTerm multiplexer safely
+    export XDG_RUNTIME_DIR=/run/user/$(id -u)
+    systemctl --user daemon-reload
+    systemctl --user start wezterm-mux.service
     
     # Change default shell to zsh
     if check_command zsh; then
