@@ -261,9 +261,7 @@ main() {
 
     loginctl enable-linger $USER
     # Start the WezTerm multiplexer safely
-    export XDG_RUNTIME_DIR=/run/user/$(id -u)
-    systemctl --user daemon-reload
-    systemctl --user start wezterm-mux.service
+    /usr/bin/wezterm-mux-server --daemonize
     
     # Change default shell to zsh
     if check_command zsh; then
