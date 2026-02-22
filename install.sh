@@ -258,6 +258,7 @@ main() {
     batch_install_gem "${packages[@]}"
     batch_install_brew "${packages[@]}"
     batch_install_dpkg "${packages[@]}"
+    /home/linuxbrew/.linuxbrew/bin/pip3 install pyyaml --break-system-packages
 
     loginctl enable-linger $USER
     # Start the WezTerm multiplexer safely
