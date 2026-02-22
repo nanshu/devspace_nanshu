@@ -259,6 +259,23 @@ main() {
     batch_install_brew "${packages[@]}"
     batch_install_dpkg "${packages[@]}"
     
+    # Change default shell to zsh
+    if check_command zsh; then
+        local zsh_path
+        zsh_path=$(command -v zsh)
+        if [[ "$SHELL" != "$zsh_path" ]]; then
+            log_info "Changing default shell to zsh ($zsh_path)..."
+            if ! grep -qx "$zsh_path" /etc/shells; then
+                echo "$zsh_path" | sudo tee -a /etc/shells > /dev/null
+            fi
+            sudo chsh -s "$zsh_path" "$(whoami)"
+        else
+            log_info "Default shell is already zsh"
+        fi
+    else
+        log_error "zsh not found, skipping shell change"
+    fi
+    
     log_info "Installation complete!"
 }
 
